@@ -1,0 +1,26 @@
+doctype html
+html 
+  head
+    block head
+      meta(charset='UTF-8') 
+      meta(name='viewport' content='width=device-width, initial-scale=1.0')
+      link(rel='stylesheet' href='/css/style.css')
+      link(rel='icon' type='image/png' href='/img/favicon.png')
+      link(rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,700i')
+      title Natours | #{title}
+
+  body
+    // Header
+    include  header.pug
+    // Content
+    block content
+      h1 This is the base layout for Natours  
+    // Footer
+    include footer.pug
+
+    //- script(src='https://cdnjs.cloudflare.com/ajax/libs/axios/1.10.0/axios.min.js') 
+    //- script(src='/js/mapbox.js') 
+    //- script(src='/js/login.js')
+    //- script(src='/js/signup.js')
+    script(src='https://js.stripe.com/v3/')
+    script(src='/js/bundle.js')
