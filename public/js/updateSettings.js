@@ -23,7 +23,9 @@ import { showAlert } from "./alert";
 
 export const updateSettings = async (data, type) => {
   const url =
-    type === "password" ? "/api/v1/users/updateMyPassword" : "/api/v1/users/updateMe";
+    type === "password"
+      ? "/api/v1/users/updateMyPassword"
+      : "/api/v1/users/updateMe";
   try {
     const res = await axios({
       method: "PATCH",
@@ -34,7 +36,7 @@ export const updateSettings = async (data, type) => {
       showAlert("success", `${type.toUpperCase()} updated successfully!`);
     }
   } catch (err) {
-    console.log(err.response);
+    // console.log(err.response);
     showAlert("error", err.response.data.message);
   }
 };
