@@ -6,3 +6,5 @@ node_modules
 .env.test
 .env.production
 config.env
+.cache
+.cache/
