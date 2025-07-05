@@ -9,6 +9,7 @@ const xss = require("xss-clean");
 const hpp = require("hpp");
 const cookieParser = require("cookie-parser");
 const compression = require("compression");
+const cors = require("cors");
 
 const AppError = require("./utils/appError");
 const globalErrorHandler = require("./controllers/errorController");
@@ -17,11 +18,15 @@ const userRouter = require("./Routes/userRoutes");
 const reviewRouter = require("./Routes/reviewRoutes");
 const viewRouter = require("./Routes/viewRoutes");
 const bookingRouter = require("./Routes/bookingRoutes");
+const bookingController = require("./controllers/bookingController");
 
 const app = express();
 app.set("view engine", "pug");
 app.set("views", path.join(__dirname, "views")); // Set the views directory
 // ! 1) GLOBAL MIDDLEWARES
+// Implement CORS
+app.use(cors());
+
 // Serving static files from the public directory (usually public/images, public/js, public/css)
 app.use(express.static(path.join(__dirname, "public")));
 
@@ -42,11 +47,20 @@ const limiter = rateLimit({
 
 app.use("/api", limiter);
 
-app.use(cookieParser()); // Cookie parser, reading cookies from req.cookies
+app.post(
+  "/webhook-checkout",
+  express.raw({ type: "application/json" }),
+  // express.raw({ type: "application/json" }),
+  bookingController.webhookCheckout
+);
+
 // Body parser, reading data from body into req.body
 app.use(express.json({ limit: "100kb" }));
+
 // For parsing application/json
 app.use(express.urlencoded({ extended: true, limit: "100kb" })); // For parsing application/x-www-form-urlencoded
+
+app.use(cookieParser()); // Cookie parser, reading cookies from req.cookies
 
 // Data sanitization against NoSQL query injection
 app.use(mongoSanitize());
