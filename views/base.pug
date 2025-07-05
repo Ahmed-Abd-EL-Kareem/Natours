@@ -9,7 +9,7 @@ html
       link(rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,700i')
       title Natours | #{title}
 
-  body
+  body(data-alert=`${alert ? alert : ''}`)
     // Header
     include  header.pug
     // Content

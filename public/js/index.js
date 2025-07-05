@@ -6,6 +6,7 @@ import { signup } from "./signup";
 import { updateSettings } from "./updateSettings";
 import { displayMap } from "./mapbox";
 import { bookTour } from "./stripe";
+import { showAlert } from "./alert";
 // DOM Elements
 const mapBox = document.getElementById("map");
 const loginForm = document.querySelector(".form--login");
@@ -80,4 +81,9 @@ if (bookTourBtn) {
     await bookTour(tourId);
     e.target.textContent = "Book tour now!";
   });
+}
+
+const alert = document.querySelector("body").dataset.alert;
+if (alert) {
+  showAlert("success", alert, 20);
 }
