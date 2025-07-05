@@ -9,12 +9,12 @@
   "license": "ISC",
   "author": "Jonas Schmedtmann",
   "type": "commonjs",
-  "main": "app.js",
+  "main": "api/server.js",
   "scripts": {
-    "dev": "nodemon server.js",
-    "start": "node server.js",
-    "start:prod": "set NODE_ENV=production && nodemon server.js",
-    "debug": "ndb server.js",
+    "dev": "nodemon api/server.js",
+    "start": "node api/server.js",
+    "start:prod": "set NODE_ENV=production && nodemon api/server.js",
+    "debug": "ndb api/server.js",
     "watch:js": "node node_modules/parcel-bundler/bin/cli.js watch \"./public/js/index.js\" --out-dir \"./public/js\" --out-file bundle.js --public-url /js/",
     "build:js": "node node_modules/parcel-bundler/bin/cli.js build \"./public/js/index.js\" --out-dir \"./public/js\" --out-file bundle.js --public-url /js/"
   },
